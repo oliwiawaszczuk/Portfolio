@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import {useEffect, useRef} from "react";
 import {scene} from "@/const/three_const";
 import {AnimateHexagons, AnimateLinesBetweenHexagons, CreateHexagons} from "@/three/BGHex";
+import {DrawLine} from "@/three/DrawLinie";
 
 
 const Scene = () => {
@@ -39,7 +40,7 @@ const Scene = () => {
         }
     })
 
-    return <div ref={ref}/>
+    return <div className={"absolute z-2"} ref={ref}/>
 }
 
 export default Scene

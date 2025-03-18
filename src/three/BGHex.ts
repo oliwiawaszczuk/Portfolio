@@ -1,6 +1,14 @@
 import {Hexagon} from "@/types/Hexagon";
 import {HexagonLine} from "@/types/HexagonLine";
-import {hexagon_border_material, hexagon_material, hexagon_size, number_of_hexagons, scene} from "@/const/three_const";
+import {
+    bottomBound, bottomLineX1, bottomLineX2,
+    hexagon_border_material,
+    hexagon_material,
+    hexagon_size,
+    leftBound, leftLineY1, leftLineY2,
+    number_of_hexagons, rightBound, rightLineY1, rightLineY2,
+    scene, topBound, topLineX1, topLineX2
+} from "@/const/three_const";
 import {DrawLine} from "@/three/DrawLinie";
 import * as THREE from "three";
 import HexagonGeometry from "@/three/HexagonGeometry";
@@ -17,8 +25,15 @@ export function CreateHexagons() {
         const mesh = new THREE.Mesh(geometry, hexagon_material)
         const mesh_border = new THREE.Mesh(geometry_border, hexagon_border_material)
 
-        const rand_pos_y = (Math.random() - 0.5) * 2 * aspectRatio * 2.5
-        const rand_pos_x = (Math.random() - 0.5) * 4 * 4.5
+        let rand_pos_x, rand_pos_y
+
+        do {
+            rand_pos_y = (Math.random() - 0.5) * 2 * aspectRatio * 2.5
+            rand_pos_x = (Math.random() - 0.5) * 4 * 4.5
+        } while (
+            rand_pos_x >= leftBound && rand_pos_x <= rightBound &&
+            rand_pos_y >= bottomBound && rand_pos_y <= topBound
+        )
 
         mesh_border.position.y = rand_pos_y
         mesh_border.position.x = rand_pos_x
@@ -68,6 +83,26 @@ export function AnimateHexagons() {
             hexagon.direction.x *= -1
         if (hexagon.mesh.position.y < -5 || hexagon.mesh.position.y > 5)
             hexagon.direction.y *= -1
+
+        if (hexagon.mesh.position.y >= topBound &&
+            hexagon.mesh.position.x >= topLineX1 && hexagon.mesh.position.x <= topLineX2) {
+            hexagon.direction.y *= -1;
+        }
+
+        if (hexagon.mesh.position.y <= bottomBound &&
+            hexagon.mesh.position.x >= bottomLineX1 && hexagon.mesh.position.x <= bottomLineX2) {
+            hexagon.direction.y *= -1;
+        }
+
+        if (hexagon.mesh.position.x <= leftBound &&
+            hexagon.mesh.position.y >= leftLineY1 && hexagon.mesh.position.y <= leftLineY2) {
+            hexagon.direction.x *= -1;
+        }
+
+        if (hexagon.mesh.position.x >= rightBound &&
+            hexagon.mesh.position.y >= rightLineY1 && hexagon.mesh.position.y <= rightLineY2) {
+            hexagon.direction.x *= -1;
+        }
     }
 }
 
