@@ -2,6 +2,7 @@
 import Header from "@/app/components/Header";
 import GradientBackground from "@/app/components/GradientBackground";
 import {useEffect} from "react";
+import ScrollTracker from "@/app/components/ScrollTracker";
 
 export default function Home() {
 
@@ -13,8 +14,13 @@ export default function Home() {
 
     return (
         <>
-            <GradientBackground/>
-            <Header />
+            {/*<GradientBackground/>*/}
+            {/*<div className="w-full h-100 bg-black">*/}
+                <Header/>
+            {/*</div>*/}
+            {/*<div className="h-100 bg-gray-700">*/}
+            {/*    <ScrollTracker/>*/}
+            {/*</div>*/}
         </>
-    );
+    )
 }

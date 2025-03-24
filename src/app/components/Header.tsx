@@ -1,14 +1,12 @@
+'use client'
+
 import Scene from "@/three/scene";
 import {is_scene_active} from "@/const/three_const";
 import Button from "@/app/components/Button";
 
 export default function Header() {
-    // function Switch() {
-    //     is_scene_active = !is_scene_active;
-    // }
-
     return (
-        <div>
+        <div className="">
             {is_scene_active && <Scene/>}
             <div className="absolute z-3 w-full h-full bg-black opacity-30"></div>
             <div className="absolute z-4 w-full h-full flex flex-col items-center justify-center text-center space-y-4">
