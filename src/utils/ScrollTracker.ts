@@ -1,5 +1,3 @@
-'use client'
-
 import {useEffect, useState} from "react"
 
 const ScrollTracker = () => {
@@ -9,7 +7,6 @@ const ScrollTracker = () => {
         if (typeof window === "undefined") return
 
         const handleScroll = () => {
-            console.log("owieh")
             setScrollY(window.scrollY)
         }
 
@@ -20,17 +17,7 @@ const ScrollTracker = () => {
         }
     }, [])
 
-    return (
-        <div>
-            <p>{scrollY} - wlefh</p>
-            <p>{scrollY} - wlefh</p>
-            <p>{scrollY} - wlefh</p>
-            <p>{scrollY} - wlefh</p>
-            <p>{scrollY} - wlefh</p>
-            <p>{scrollY} - wlefh</p>
-            <p>{scrollY} - wlefh</p>
-        </div>
-    )
+    return scrollY
 }
 
 export default ScrollTracker

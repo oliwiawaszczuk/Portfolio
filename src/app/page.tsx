@@ -1,26 +1,37 @@
 "use client"
 import Header from "@/app/components/Header";
-import GradientBackground from "@/app/components/GradientBackground";
-import {useEffect} from "react";
-import ScrollTracker from "@/app/components/ScrollTracker";
+import ScrollTracker from "@/utils/ScrollTracker";
+import {useEffect, useState} from "react";
+import ProjectCard from "@/app/components/ProjectCard";
+import ProjectFrame from "@/app/components/ProjectFrame";
+import {projects} from "@/const/Projects";
+import {Project} from "@/types/Project";
 
 export default function Home() {
+    const scrollY = ScrollTracker()
 
-    // useEffect(() => {
-    //     console.log(window.innerWidth, window.innerHeight)
-    // }, [])
+    const [isHeaderVisible, setIsHeaderVisible] = useState(true)
 
-    // const {width, height} = Dimensions.get("window")
+    useEffect(() => {
+        setIsHeaderVisible(scrollY <= 30)
+    }, [scrollY])
 
     return (
         <>
-            {/*<GradientBackground/>*/}
-            {/*<div className="w-full h-100 bg-black">*/}
-                <Header/>
+            {/*<div className={`w-full transition-all duration-500 ease-in-out ${isHeaderVisible ? "translate-y-10 opacity-100" : "-translate-y-full opacity-0"}`}>*/}
+            {/*    <Header />*/}
             {/*</div>*/}
-            {/*<div className="h-100 bg-gray-700">*/}
-            {/*    <ScrollTracker/>*/}
-            {/*</div>*/}
+            {projects.map((project: Project, id: number) => (
+                <ProjectFrame
+                    key={id}
+                    name={project.name}
+                    date={project.date}
+                    description={project.description}
+                    images={project.images}
+                    tech={project.tech}
+                    isDescriptionOnRight={!(id % 2)}
+                />
+            ))}
         </>
     )
 }

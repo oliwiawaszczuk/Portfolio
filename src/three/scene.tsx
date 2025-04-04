@@ -38,7 +38,7 @@ const Scene = () => {
             // @ts-ignore
             ref.current.removeChild(render.domElement)
         }
-    })
+    }, [])
 
     return <div className={"absolute z-2"} ref={ref}/>
 }
