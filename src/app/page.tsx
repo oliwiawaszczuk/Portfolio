@@ -32,6 +32,7 @@ export default function Home() {
                     isDescriptionOnRight={!(id % 2)}
                 />
             ))}
+            <h1 className="flex justify-center text-4xl">To be continued...</h1>
         </>
     )
 }

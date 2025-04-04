@@ -3,6 +3,11 @@
 :root {
   --background: #45565e;
   --foreground: #ffc951;
+  --swiper-theme-color: #1e2939 !important;
+}
+
+.swiper .swiper-button-next {
+  color: #1e2939;
 }
 
 @theme inline {
