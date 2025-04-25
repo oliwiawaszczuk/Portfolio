@@ -16,7 +16,7 @@ export const projects: Project[] = [
                 </ul>
             </div>,
         images: ["praLog1.png", "praLog2.png", "praLog3.png"],
-        tech: [EnumTech.Swift, EnumTech.Python, EnumTech.SQLite, EnumTech.SQL]
+        tech: [EnumTech.Swift, EnumTech.Python, EnumTech.SQLite, EnumTech.SQL, EnumTech.Git]
     },
     {
         name: "LRA",
@@ -37,7 +37,7 @@ export const projects: Project[] = [
                 </ul>
             </div>,
         images: ["LRA1.png", "LRA2.png", "LRA6.png", "LRA4.png", "LRA3.png"],
-        tech: [EnumTech.Python, EnumTech.Flask, EnumTech.PostgreSQL, EnumTech.Docker, EnumTech.Postman, EnumTech.SQL]
+        tech: [EnumTech.Python, EnumTech.Flask, EnumTech.PostgreSQL, EnumTech.Docker, EnumTech.Postman, EnumTech.SQL, EnumTech.Git]
     },
     {
         name: "praMory",
@@ -57,7 +57,7 @@ export const projects: Project[] = [
                 </ul>
             </div>,
         images: ["praMory1.png", "praMory2.png", "praMory3.png"],
-        tech: [EnumTech.ReactNative, EnumTech.TypeScript, EnumTech.NodeJS, EnumTech.Zustand, EnumTech.JSON, EnumTech.Git, EnumTech.TailwindCSS, EnumTech.NextJS]
+        tech: [EnumTech.ReactNative, EnumTech.TypeScript, EnumTech.NodeJS, EnumTech.Zustand, EnumTech.JSON, EnumTech.Git, EnumTech.TailwindCSS, EnumTech.Android, EnumTech.NextJS]
     },
     {
         name: "OrderFlow",
@@ -78,7 +78,7 @@ export const projects: Project[] = [
                 </ul>
             </div>,
         images: ["OrderFlow1.png", "OrderFlow3.png", "OrderFlow2.png", "OrderFlow4.png", "OrderFlow5.png"],
-        tech: [EnumTech.ReactNative, EnumTech.TailwindCSS, EnumTech.Zustand, EnumTech.NextJS]
+        tech: [EnumTech.ReactNative, EnumTech.TailwindCSS, EnumTech.Zustand, EnumTech.NextJS, EnumTech.Git, EnumTech.Android]
     },
     {
         name: "UnEngine Gener",
@@ -173,7 +173,7 @@ export const projects: Project[] = [
                 </ul>
             </div>,
         images: ["PCG1.png", "PCG2.png"],
-        tech: [EnumTech.Unity, EnumTech.Python, EnumTech.CSharp]
+        tech: [EnumTech.Unity, EnumTech.Python, EnumTech.CSharp, EnumTech.Git]
     },
     {
         name: "Mclone",
@@ -212,7 +212,7 @@ export const projects: Project[] = [
                 </ul>
             </div>,
         images: ["praChat1.png", "praChat2.png", "praChat3.png"],
-        tech: [EnumTech.React, EnumTech.Python, EnumTech.Flask, EnumTech.PostgreSQL, EnumTech.SocketIO, EnumTech.RestAPI, EnumTech.NextJS, EnumTech.NodeJS, EnumTech.SQL]
+        tech: [EnumTech.React, EnumTech.Python, EnumTech.Flask, EnumTech.PostgreSQL, EnumTech.SocketIO, EnumTech.RestAPI, EnumTech.NextJS, EnumTech.NodeJS, EnumTech.SQL, EnumTech.Git]
     },
     {
         name: "HexaRR",

@@ -2,12 +2,8 @@
 import Header from "@/app/components/Header";
 import ScrollTracker from "@/utils/ScrollTracker";
 import {useEffect, useState} from "react";
-import ProjectCard from "@/app/components/ProjectCard";
-import ProjectFrame from "@/app/components/ProjectFrame";
-import {projects} from "@/const/Projects";
-import {Project} from "@/types/Project";
 import KnowledgeGraph from "@/app/components/KnowledgeGraph";
-import {ReactFlowProvider} from "@xyflow/react";
+import RenderProjects from "@/app/components/RenderProjects";
 
 
 export default function Home() {
@@ -27,17 +23,9 @@ export default function Home() {
 
             <KnowledgeGraph/>
 
-            {projects.map((project: Project, id: number) => (
-                <ProjectFrame
-                    key={id}
-                    name={project.name}
-                    date={project.date}
-                    description={project.description}
-                    images={project.images}
-                    tech={project.tech}
-                    isDescriptionOnRight={!(id % 2)}
-                />
-            ))}
+            <RenderProjects/>
+
+
             {/*<h1 className="flex justify-center text-4xl">To be continued...</h1>*/}
         </>
     )
