@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import {ReactFlowProvider} from "@xyflow/react";
 
 export const metadata: Metadata = {
   title: "Oliwia Waszczuk - Portfolio",
@@ -14,7 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
+            <ReactFlowProvider>
+                {children}
+            </ReactFlowProvider>
       </body>
     </html>
   );

@@ -17,7 +17,6 @@ export enum EnumTech {
     NextJS = "NextJS",
     SocketIO = "SocketIO",
     RestAPI = "RestAPI",
-    bcript = "bcript",
     SQL = "SQL",
     JSON = "JSON",
     XML = "XML",
@@ -27,4 +26,7 @@ export enum EnumTech {
     Git = "Git",
     AI = "AI",
     Shell = "Shell",
+    Swift = "Swift",
+    SQLite = "SQLite",
+    Blender = "Blender",
 }

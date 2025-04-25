@@ -2,11 +2,11 @@ import {
     ReactFlow,
     useNodesState,
     useEdgesState,
-    addEdge, Background,
-
+    addEdge,
+    Background
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
-import {useCallback, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import {initialEdges, initialNodes} from "@/const/Nodes";
 import {BackgroundVariant} from "@reactflow/background";
 
@@ -24,8 +24,8 @@ const KnowledgeGraph = () => {
     return (
         <>
             {!visible ?
-                <div className="w-auto bg-[#354153] h-auto flex justify-center cursor-pointer p-2" onClick={() => setVisible(true)}>
-                    <h1>Click to show graph</h1>
+                <div className="w-auto bg-gray-700 h-auto flex justify-center cursor-pointer p-2 border-gray-800 border-2" onClick={() => setVisible(true)}>
+                    <h1>Click to show knowledge graph</h1>
                 </div>
             :
                 <div className="w-full h-full flex flex-row">
@@ -34,23 +34,34 @@ const KnowledgeGraph = () => {
                         height: '80vh',
                         transition: 'height 0.3s ease',
                         overflow: 'hidden',
-                        border: '2px solid #354153',
-                    }}>
+                    }} className="border-gray-800 border-2">
                         <ReactFlow
+                            className="relative z-10"
                             nodes={nodes}
                             edges={edges}
                             fitView
                             onNodesChange={onNodesChange}
                             onEdgesChange={onEdgesChange}
                             onConnect={onConnect}
-                            // nodesDraggable={false}
-                            // nodesConnectable={false}
-                            // elementsSelectable={false}
-                            // zoomOnScroll={false}
-                            // panOnDrag={false}
-                            // zoomOnPinch={false}
-                            // panOnScroll={false}
                         >
+                            <svg
+                                width="100%"
+                                height="100%"
+                                className="absolute pointer-events-none select-none"
+                                style={{ zIndex: 0 }}
+                            >
+                                <text
+                                    x="50%"
+                                    y="10%"
+                                    textAnchor="middle"
+                                    dominantBaseline="middle"
+                                    fontSize="102"
+                                    fill="rgba(0,0,0, 0.3)"
+                                >
+                                    MY KNOWLEDGE GRAPH
+                                </text>
+                            </svg>
+
                             <Background
                                 gap={10}
                                 color="#ccc"
@@ -58,8 +69,8 @@ const KnowledgeGraph = () => {
                             />
                         </ReactFlow>
                     </div>
-                    <div className="w-[4%] bg-[#354153] h-auto flex justify-center items-center cursor-pointer" onClick={() => setVisible(false)}>
-                        <h1 style={{ writingMode: 'vertical-rl' }}>Click here to hide graph. Use scroll on graph to see more details</h1>
+                    <div className="w-[4%] bg-gray-700 h-auto flex justify-center items-center cursor-pointer border-gray-800 border-2" onClick={() => setVisible(false)}>
+                        <h1 style={{ writingMode: 'vertical-rl' }}>Use scroll on graph to see more details. Click here to hide graph</h1>
                     </div>
                 </div>
             }
