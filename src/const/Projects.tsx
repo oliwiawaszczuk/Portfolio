@@ -3,6 +3,23 @@ import {EnumTech} from "@/const/EnumTech";
 
 export const projects: Project[] = [
     {
+        name: "praAppDetector",
+        date: "04/2025",
+        description:
+            <div className="leading-relaxed font-sans text-[1.1rem]">
+                <p className="indent-8"> <b className="text-[#ffc200]">A macOS background utility</b></p>
+                <br/>
+                <p>Work in progress...</p>
+                {/*<ul className="list-disc pl-5 space-y-1">*/}
+                {/*    <li><b className="text-[#ffc200]">Real-Time Monitoring:</b> Captures battery level and charging status <i>every minute</i> via <i>IOKit Power Sources API</i>, ensuring data accuracy</li>*/}
+                {/*    <li><b className="text-[#ffc200]">Data Persistence:</b> Automatically stores logs in a <i>local SQLite database</i>, with advanced trend analysis powered by <i>Python data science tools</i> (Numpy/Matplotlib)</li>*/}
+                {/*    <li><b className="text-[#ffc200]">Background Execution:</b> Runs as a <i>launchd service</i> (via <code>~/Library/LaunchAgents/</code> .plist), ensuring persistent monitoring with minimal system impact</li>*/}
+                {/*</ul>*/}
+            </div>,
+        images: [],
+        tech: [EnumTech.Swift, EnumTech.Git, EnumTech.MacOS] //, EnumTech.Python, EnumTech.SQLite, EnumTech.SQL,
+    },
+    {
         name: "praLog",
         date: "04/2025",
         description:
@@ -16,7 +33,7 @@ export const projects: Project[] = [
                 </ul>
             </div>,
         images: ["praLog1.png", "praLog2.png", "praLog3.png"],
-        tech: [EnumTech.Swift, EnumTech.Python, EnumTech.SQLite, EnumTech.SQL, EnumTech.Git]
+        tech: [EnumTech.Swift, EnumTech.Python, EnumTech.SQLite, EnumTech.SQL, EnumTech.Git, EnumTech.MacOS]
     },
     {
         name: "LRA",

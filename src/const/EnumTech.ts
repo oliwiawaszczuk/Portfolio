@@ -30,4 +30,5 @@ export enum EnumTech {
     SQLite = "SQLite",
     Blender = "Blender",
     Android = "Android",
+    MacOS = "MacOS",
 }
