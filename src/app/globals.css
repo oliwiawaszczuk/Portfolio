@@ -1,22 +1,316 @@
 @import "tailwindcss";
 
 :root {
-  --background: #45565e;
-  --foreground: #ffc951;
-  --swiper-theme-color: #1e2939 !important;
+  --background: #121212;
+  --secondary-bg: #1e1e1e;
+  --accent: #ffc951;
+  --accent-dim: rgba(255, 201, 81, 0.7);
+  --text: #ffffff;
+  --text-secondary: #a0a0a0;
+  --bottle-green: #0b6e4f;
+  --dark-gray: #45565e;
+  --swiper-theme-color: var(--accent) !important;
 }
 
-.swiper .swiper-button-next {
-  color: #1e2939;
+/* Animation utilities */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes borderGlow {
+  0%, 100% { box-shadow: 0 0 5px var(--accent); }
+  50% { box-shadow: 0 0 15px var(--accent); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes floatingDots {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes rotateBackground {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shine {
+  0% { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease forwards;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: floatSlow 12s ease-in-out infinite;
+}
+
+.border-glow:hover {
+  animation: borderGlow 2s infinite;
+}
+
+.animate-shine {
+  background: linear-gradient(to right, 
+    transparent 0%, 
+    rgba(255, 201, 81, 0.2) 50%, 
+    transparent 100%);
+  background-size: 200% 100%;
+  animation: shine 3s infinite;
+}
+
+.animate-rotate {
+  animation: rotateBackground 30s linear infinite;
+}
+
+.swiper .swiper-button-next,
+.swiper .swiper-button-prev {
+  color: var(--accent);
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-foreground: var(--accent);
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Consolas, monaco, monospace;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Background elements */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 70% 20%, rgba(11, 110, 79, 0.08), transparent 40%),
+              radial-gradient(circle at 30% 80%, rgba(255, 201, 81, 0.05), transparent 40%),
+              radial-gradient(circle at 90% 90%, rgba(69, 86, 94, 0.1), transparent 40%);
+  z-index: -1;
+}
+
+/* Moving dotted background */
+.dots-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at center, rgba(255, 201, 81, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at center, rgba(11, 110, 79, 0.07) 1px, transparent 1px);
+  background-size: 40px 40px, 60px 60px;
+  background-position: 0 0, 20px 20px;
+  opacity: 0.5;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--secondary-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+/* Custom scrollbar for project descriptions */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(30, 30, 30, 0.3);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--accent-dim);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Utilities for transitions */
+.transition-all {
+  transition: all 0.3s ease-in-out;
+}
+
+.transition-transform {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Responsive utilities */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Custom styles for project swiper */
+.project-swiper .swiper-button-next,
+.project-swiper .swiper-button-prev {
+  display: none !important;
+}
+
+.project-swiper .swiper-pagination-bullet {
+  background-color: rgba(255, 201, 81, 0.6) !important;
+}
+
+.project-swiper .swiper-pagination-bullet-active {
+  background-color: var(--accent) !important;
+}
+
+/* Fullscreen image viewer */
+.fullscreen-image-backdrop {
+  backdrop-filter: blur(8px);
+}
+
+.fullscreen-nav-button {
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+.fullscreen-nav-button:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Image zoom effect on click */
+@keyframes zoomIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.zoom-in {
+  animation: zoomIn 0.3s ease forwards;
+}
+
+/* Project image handling */
+.project-swiper .swiper-slide {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0a0a0a;
+}
+
+.project-swiper img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-position: center;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .project-swiper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+/* Touch effect for mobile */
+.touch-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 201, 81, 0.15);
+  z-index: 5;
+}
+
+/* Touch indicator for mobile */
+.mobile-touch-indicator {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-touch-indicator {
+    display: block;
+  }
+}
+
+/* Fullscreen image container - simplify */
+.fullscreen-image-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.fullscreen-image-container img {
+  max-width: 100%;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Mobile touch effects */
+@keyframes touchPulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.7; }
 }

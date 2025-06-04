@@ -40,7 +40,7 @@ const Scene = () => {
         }
     }, [])
 
-    return <div className={"absolute z-2"} ref={ref}/>
+    return <div className={"absolute z-2 opacity-60"} ref={ref}/>
 }
 
 export default Scene

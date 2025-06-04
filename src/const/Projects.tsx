@@ -3,13 +3,40 @@ import {EnumTech} from "@/const/EnumTech";
 
 export const projects: Project[] = [
     {
+        name: "LYMAD website",
+        date: "05/2025",
+        description:
+            <div className="leading-relaxed font-sans text-[1.1rem]">
+                <div className="indent-8">
+                    <b className="text-[#ffc200]">A full-stack web application</b> built with a modern <b>React frontend</b> and a secure <b>Python backend</b>, featuring robust authentication mechanisms including persistent login sessions. Designed with both user experience and data protection in mind, the project serves as a foundational template for scalable web systems.
+                </div>
+                <br/>
+                <ul className="list-disc pl-5 space-y-1">
+                    <li>
+                        <b className="text-[#ffc200]">Frontend (React):</b> Responsive and modular UI built with <i>React</i> and <i>Tailwind CSS</i>, offering dynamic user interaction and form validation
+                    </li>
+                    <li>
+                        <b className="text-[#ffc200]">Secure Authentication:</b> Supports <i>login, registration,</i> and <i>auto-login</i> via <i>HTTP-only cookies</i> and <i>JWT</i>, protecting against common web vulnerabilities
+                    </li>
+                    <li>
+                        <b className="text-[#ffc200]">Backend (Python):</b> API built with my API <i>(LRA project)</i>, handling authentication logic, session management, and secure password storage using <i>bcrypt hashing</i>
+                    </li>
+                    <li>
+                        <b className="text-[#ffc200]">Development-Oriented:</b> Structured for easy expansion — includes basic user roles, scalable routing, and database-ready models using <i>SQLAlchemy</i>
+                    </li>
+                </ul>
+            </div>,
+        images: ["Lymad-website-4.png", "Lymad-website-5.png", "Lymad-website-6.png", "Lymad-website-1.png", "Lymad-website-2.png", "Lymad-website-3.png"],
+        tech: [EnumTech.React, EnumTech.TailwindCSS, EnumTech.TypeScript, EnumTech.NextJS, EnumTech.Zustand, EnumTech.Python, EnumTech.Flask, EnumTech.PostgreSQL, EnumTech.Git]
+    },
+    {
         name: "praAppDetector",
         date: "04/2025",
         description:
             <div className="leading-relaxed font-sans text-[1.1rem]">
-                <p className="indent-8"> <b className="text-[#ffc200]">A macOS background utility</b></p>
+                <div className="indent-8"> <b className="text-[#ffc200]">A macOS background utility</b></div>
                 <br/>
-                <p>Work in progress...</p>
+                <div>Work in progress...</div>
                 {/*<ul className="list-disc pl-5 space-y-1">*/}
                 {/*    <li><b className="text-[#ffc200]">Real-Time Monitoring:</b> Captures battery level and charging status <i>every minute</i> via <i>IOKit Power Sources API</i>, ensuring data accuracy</li>*/}
                 {/*    <li><b className="text-[#ffc200]">Data Persistence:</b> Automatically stores logs in a <i>local SQLite database</i>, with advanced trend analysis powered by <i>Python data science tools</i> (Numpy/Matplotlib)</li>*/}
@@ -24,7 +51,7 @@ export const projects: Project[] = [
         date: "04/2025",
         description:
             <div className="leading-relaxed font-sans text-[1.1rem]">
-                <p className="indent-8"> <b className="text-[#ffc200]">A macOS background utility</b> that continuously tracks battery health and usage patterns, leveraging <b>IOKit’s low-level APIs</b> to collect precise metrics. The app runs silently in the background, logging data to a database for long-term analysis and diagnostics. </p>
+                <div className="indent-8"> <b className="text-[#ffc200]">A macOS background utility</b> that continuously tracks battery health and usage patterns, leveraging <b>IOKit's low-level APIs</b> to collect precise metrics. The app runs silently in the background, logging data to a database for long-term analysis and diagnostics. </div>
                 <br/>
                 <ul className="list-disc pl-5 space-y-1">
                     <li><b className="text-[#ffc200]">Real-Time Monitoring:</b> Captures battery level and charging status <i>every minute</i> via <i>IOKit Power Sources API</i>, ensuring data accuracy</li>
@@ -40,11 +67,11 @@ export const projects: Project[] = [
         date: "04/2025",
         description:
             <div className="leading-relaxed font-sans text-[1.1rem]">
-                <p className="indent-8">
+                <div className="indent-8">
                     <b className="text-[#ffc200]">LRA - Login REST API</b> provides essential backend services
                     for user management with JWT-based security. Built with <b>Flask and PostgreSQL</b>,
                     it offers frontend applications ready-to-use endpoints for seamless auth integration.
-                </p>
+                </div>
                 <br/>
                 <ul className="list-disc pl-5 space-y-1">
                     <li><b className="text-[#ffc200]">Core Features:</b> Registration, login, token refresh, and session validation</li>
@@ -61,11 +88,11 @@ export const projects: Project[] = [
         date: "12/2025",
         description:
             <div className="leading-relaxed font-sans text-[1.1rem]">
-                <p className="indent-8">
+                <div className="indent-8">
                     <b className="text-[#ffc200]">A mobile application</b> designed to enhance learning using the memory palace technique - one of the most
                     <b> powerful learning methods</b>. The app allows users to create a palace with multiple rooms, where they can add things
                     to aid memorization.
-                </p>
+                </div>
                 <br/>
                 <ul className="list-disc pl-5 space-y-1">
                     <li><b className="text-[#ffc200]">Data Persistence & Storage:</b> Uses <i>Zustand</i> with <i>AsyncStorage</i> for persisting user data, ensuring seamless state rehydration</li>
@@ -81,11 +108,11 @@ export const projects: Project[] = [
         date: "11/2024",
         description:
             <div className="leading-relaxed font-sans text-[1.1rem]">
-                <p className="indent-8">
+                <div className="indent-8">
                     <b className="text-[#ffc200]">Mobile Frontend Project</b> - A React Native application
                     built from Figma designs with pixel-perfect implementation. Focused on delivering
                     smooth UI interactions and seamless API integration.
-                </p>
+                </div>
                 <br/>
                 <ul className="list-disc pl-5 space-y-1">
                     <li><b className="text-[#ffc200]">UI Precision:</b> Faithfully translated Figma designs to code using Material UI components</li>
@@ -102,10 +129,10 @@ export const projects: Project[] = [
         date: "10/2024",
         description:
             <div className="leading-relaxed font-sans text-[1.1rem]">
-                <p className="indent-8">
+                <div className="indent-8">
                     <b className="text-[#ffc200]">Unreal Engine Terrain Generator</b> - My first dive into game development in Unreal Engine,
                     creating a procedural cube-based terrain system. Learned core UE concepts while building this customizable landscape tool.
-                </p>
+                </div>
                 <br/>
                 <ul className="list-disc pl-5 space-y-1">
                     <li><b className="text-[#ffc200]">Core Functionality:</b> Generates grid-based terrain from width/size parameters using Blueprints</li>
@@ -120,11 +147,11 @@ export const projects: Project[] = [
         date: "09/2024",
         description:
             <div className="leading-relaxed font-sans text-[1.1rem]">
-                <p className="indent-8">
+                <div className="indent-8">
                     <b className="text-[#ffc200]">2D Farming Simulator</b> - A agricultural management game
                     featuring interactive farm plots with detailed growth systems. Developed to master Godot's
                     input handling and state management.
-                </p>
+                </div>
                 <br/>
                 <ul className="list-disc pl-5 space-y-1">
                     <li><b className="text-[#ffc200]">Interactive Fields:</b> Hover-to-inspect system showing planting status, hydration levels, and crop types</li>
@@ -140,10 +167,10 @@ export const projects: Project[] = [
         date: "08/2024",
         description:
             <div className="leading-relaxed font-sans text-[1.1rem]">
-                <p className="indent-8">
+                <div className="indent-8">
                     <b className="text-[#ffc200]">Block Puzzle Classic</b> - A mobile tile-matching game
                     with addictive block-placement mechanics
-                </p>
+                </div>
                 <br/>
                 <ul className="list-disc pl-5 space-y-1">
                     <li><b className="text-[#ffc200]">Core Gameplay:</b> Drag-and-drop block placement with line-clearing mechanics</li>
@@ -158,11 +185,11 @@ export const projects: Project[] = [
         date: "07/2024",
         description:
             <div className="leading-relaxed font-sans text-[1.1rem]">
-                <p className="indent-8">
+                <div className="indent-8">
                     <b className="text-[#ffc200]">Match Items 2D</b> - An addictive item-combination game
                     where players experiment with recipes to discover new creations. Developed to explore Unity's
                     drag-and-drop systems and inventory management.
-                </p>
+                </div>
                 <br/>
                 <ul className="list-disc pl-5 space-y-1">
                     <li><b className="text-[#ffc200]">Core Mechanic:</b> Matching the same items</li>
@@ -178,10 +205,10 @@ export const projects: Project[] = [
         date: "07/2024",
         description:
             <div className="leading-relaxed font-sans text-[1.1rem]">
-                <p className="indent-8">
+                <div className="indent-8">
                     <b className="text-[#ffc200]">PCG Exploration Project</b> - My hands-on dive into procedural content generation,
                     experimenting with both game-ready implementations in Unity and algorithmic foundations in Python.
-                </p>
+                </div>
                 <br/>
                 <ul className="list-disc pl-5 space-y-1">
                     <li><b className="text-[#ffc200]">Unity Implementation:</b> Created runtime terrain/cave generators</li>
@@ -197,10 +224,10 @@ export const projects: Project[] = [
         date: "07/2024",
         description:
             <div className="leading-relaxed font-sans text-[1.1rem]">
-                <p className="indent-8">
+                <div className="indent-8">
                     <b className="text-[#ffc200]">3D Voxel Terrain Generator</b> - A Unity project implementing Perlin noise
                     to create Minecraft-style destructible environments.
-                </p>
+                </div>
                 <br/>
                 <ul className="list-disc pl-5 space-y-1">
                     <li><b className="text-[#ffc200]">Noise Generation:</b> Customizable terrain creation via Unity Inspector (frequency, seed, and amplitude)</li>
@@ -215,11 +242,11 @@ export const projects: Project[] = [
         date: "06/2024",
         description:
             <div className="leading-relaxed font-sans text-[1.1rem]">
-                <p className="indent-8">
+                <div className="indent-8">
                     <b className="text-[#ffc200]">Real-Time Chat Application</b> - A responsive messaging platform
                     featuring instant communication through <i>Socket.IO</i> (real-time event-based library),
                     with secure user authentication and contact management.
-                </p>
+                </div>
                 <br/>
                 <ul className="list-disc pl-5 space-y-1">
                     <li><b className="text-[#ffc200]">Core Features:</b> Instant messaging, friend list management, and login system</li>
@@ -236,11 +263,11 @@ export const projects: Project[] = [
         date: "12/2023",
         description:
             <div className="leading-relaxed font-sans text-[1.1rem]">
-                <p className="indent-8">
+                <div className="indent-8">
                     <b className="text-[#ffc200]">Hex-Based map for player</b> - A 3D Unity environment featuring
                     hexagonal terrain with dynamic resource systems and growth mechanics, showcasing my 3D modeling
                     pipeline from Blender to Unity.
-                </p>
+                </div>
                 <br/>
                 <ul className="list-disc pl-5 space-y-1">
                     <li><b className="text-[#ffc200]">World Building:</b> Hexagonal grid system with destructible resources (trees/rocks) and plant growth cycles</li>
