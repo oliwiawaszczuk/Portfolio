@@ -1,11 +1,35 @@
-name: Test na runnerze
+name: Test SSH
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
-  test-runner:
-    runs-on: [self-hosted]
+  test-ssh:
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Test
-        run: echo "Działa na moim VPS!"
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VPS_KEY }}" > ~/.ssh/gh-actions-key
+          chmod 600 ~/.ssh/gh-actions-key
+
+      - name: SSH to VPS
+        run: |
+          ssh -i ~/.ssh/gh-actions-key -o StrictHostKeyChecking=no ubuntu@57.128.223.196 'echo hello from VPS'
+
+      - name: Debug VPS_KEY
+        run: echo "${{ secrets.VPS_KEY }}" | head -n 50
+
+      - name: Write private key
+        run: |
+          mkdir -p ~/.ssh
+          printf "%s" "${{ secrets.VPS_KEY }}" > ~/.ssh/gh-actions-key
+          chmod 600 ~/.ssh/gh-actions-key
+          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Try SSH
+        run: |
+          ssh -vvv -i ~/.ssh/gh-actions-key -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} 'echo OK'
