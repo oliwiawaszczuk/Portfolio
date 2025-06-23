@@ -18,7 +18,7 @@ jobs:
 
       - name: SSH to VPS
         run: |
-          ssh -i ~/.ssh/gh-actions-key -o StrictHostKeyChecking=no user@your-vps-ip 'echo hello from VPS'
+          ssh -i ~/.ssh/gh-actions-key -o StrictHostKeyChecking=no ubuntu@57.128.223.196 'echo hello from VPS'
 
       - name: Debug VPS_KEY
         run: echo "${{ secrets.VPS_KEY }}" | head -n 50
