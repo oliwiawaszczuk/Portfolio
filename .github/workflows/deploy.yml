@@ -32,18 +32,18 @@ jobs:
 
       - name: Debug key
         run: |
-          ssh-keygen -lf ~/.ssh/gh-actions-key || echo "Invalid key"
+          ssh-keygen -lf ~/.ssh/gh-actions-key.pub || echo "Invalid key"
 
       - name: Test SCP
         run: |
           echo "Hello" > test.txt
-          scp -i ~/.ssh/gh-actions-key -o StrictHostKeyChecking=no test.txt ubuntu@57.128.223.196:/tmp
+          scp -i ~/.ssh/gh-actions-key.pub -o StrictHostKeyChecking=no test.txt ubuntu@57.128.223.196:/tmp
 
 
       - name: SSH test
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.VPS_KEY }}" > ~/.ssh/gh-actions-key
-          chmod 600 ~/.ssh/gh-actions-key
-          ssh -vvv -i ~/.ssh/gh-actions-key -o StrictHostKeyChecking=no ubuntu@57.128.223.196 'echo OK'
+          echo "${{ secrets.VPS_KEY }}" > ~/.ssh/gh-actions-key.pub
+          chmod 600 ~/.ssh/gh-actions-key.pub
+          ssh -vvv -i ~/.ssh/gh-actions-key.pub -o StrictHostKeyChecking=no ubuntu@57.128.223.196 'echo OK'
 
