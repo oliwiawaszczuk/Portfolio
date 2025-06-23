@@ -13,43 +13,55 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Check remote SSH access and perms
+      - name: Setup SSH Key
         run: |
-          ssh -i ~/.ssh/gh-actions-key -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} 'ls -ld ~/.ssh && ls -l ~/.ssh/authorized_keys'      
-
-      - name: Setup SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.VPS_KEY }}" > ~/.ssh/gh-actions-key
-          chmod 600 ~/.ssh/gh-actions-key
-          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
-
-      - name: Debug key
-        run: ssh-keygen -lf ~/.ssh/gh-actions-key || echo "Invalid key"
+          mkdir -p $GITHUB_WORKSPACE/.ssh
+          echo "${{ secrets.VPS_KEY }}" > $GITHUB_WORKSPACE/.ssh/gh-actions-key
+          chmod 600 $GITHUB_WORKSPACE/.ssh/gh-actions-key
+          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> $GITHUB_WORKSPACE/.ssh/known_hosts
 
       - name: SSH Test
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.VPS_KEY }}" > ~/.ssh/gh-actions-key
-          chmod 600 ~/.ssh/gh-actions-key
-          ssh -vvv -i ~/.ssh/gh-actions-key -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} 'echo OK'
+          ssh -i $GITHUB_WORKSPACE/.ssh/gh-actions-key -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} 'echo OK'
 
 
-      - name: Test SCP
-        run: |
-          echo "Hello" > test.txt
-          scp -i ~/.ssh/gh-actions-key -o StrictHostKeyChecking=no test.txt ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/tmp
-
-      - name: SSH test
-        run: |
-          ssh -i ~/.ssh/gh-actions-key -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} 'echo OK'
-
-      - name: Deploy to VPS via SSH
-        run: |
-          ssh -i ~/.ssh/gh-actions-key -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
-            cd ~/deploy
-            git pull origin main
-            docker compose build
-            docker compose down
-            docker compose up -d
-          EOF
+#      - name: Check remote SSH access and perms
+#        run: |
+#          ssh -i ~/.ssh/gh-actions-key -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} 'ls -ld ~/.ssh && ls -l ~/.ssh/authorized_keys'
+#
+#      - name: Setup SSH
+#        run: |
+#          mkdir -p ~/.ssh
+#          echo "${{ secrets.VPS_KEY }}" > ~/.ssh/gh-actions-key
+#          chmod 600 ~/.ssh/gh-actions-key
+#          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+#
+#      - name: Debug key
+#        run: ssh-keygen -lf ~/.ssh/gh-actions-key || echo "Invalid key"
+#
+#      - name: SSH Test
+#        run: |
+#          mkdir -p ~/.ssh
+#          echo "${{ secrets.VPS_KEY }}" > ~/.ssh/gh-actions-key
+#          chmod 600 ~/.ssh/gh-actions-key
+#          ssh -vvv -i ~/.ssh/gh-actions-key -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} 'echo OK'
+#
+#
+#      - name: Test SCP
+#        run: |
+#          echo "Hello" > test.txt
+#          scp -i ~/.ssh/gh-actions-key -o StrictHostKeyChecking=no test.txt ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/tmp
+#
+#      - name: SSH test
+#        run: |
+#          ssh -i ~/.ssh/gh-actions-key -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} 'echo OK'
+#
+#      - name: Deploy to VPS via SSH
+#        run: |
+#          ssh -i ~/.ssh/gh-actions-key -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+#            cd ~/deploy
+#            git pull origin main
+#            docker compose build
+#            docker compose down
+#            docker compose up -d
+#          EOF
