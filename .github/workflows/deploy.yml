@@ -21,10 +21,12 @@ jobs:
 
       - name: Build
         run: |
+          cd /home/ubuntu/projects/Portfolio
           npm install
           npm run build
 
       - name: Restart app
         run: |
+          cd /home/ubuntu/projects/Portfolio
           pm2 restart portfolio || pm2 start npm --name portfolio -- run start
 
