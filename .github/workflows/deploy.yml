@@ -13,19 +13,37 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup SSH
+#      - name: Setup SSH
+#        run: |
+#          mkdir -p ~/.ssh
+#          echo "${{ secrets.VPS_KEY }}" > ~/.ssh/gh-actions-key
+#          chmod 600 ~/.ssh/gh-actions-key
+#          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+#
+#      - name: Deploy to VPS via SSH
+#        run: |
+#          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+#            cd ~/deploy
+#            git pull origin main
+#            docker compose build
+#            docker compose down
+#            docker compose up -d
+#          EOF
+
+      - name: Debug key
+        run: |
+          ssh-keygen -lf ~/.ssh/gh-actions-key || echo "Invalid key"
+
+      - name: Test SCP
+        run: |
+          echo "Hello" > test.txt
+          scp -i ~/.ssh/gh-actions-key -o StrictHostKeyChecking=no test.txt ubuntu@57.128.223.196:/tmp
+
+
+      - name: SSH test
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.VPS_KEY }}" > ~/.ssh/gh-acitions
-          chmod 600 ~/.ssh/gh-acitions
-          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+          echo "${{ secrets.VPS_KEY }}" > ~/.ssh/gh-actions-key
+          chmod 600 ~/.ssh/gh-actions-key
+          ssh -vvv -i ~/.ssh/gh-actions-key -o StrictHostKeyChecking=no ubuntu@57.128.223.196 'echo OK'
 
-      - name: Deploy to VPS via SSH
-        run: |
-          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
-            cd ~/deploy
-            git pull origin main
-            docker compose build
-            docker compose down
-            docker compose up -d
-          EOF
