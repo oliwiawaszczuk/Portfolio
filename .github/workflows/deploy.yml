@@ -10,6 +10,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VPS_KEY }}" > ~/.ssh/gh-actions-key
+          chmod 600 ~/.ssh/gh-actions-key
+
+      - name: SSH to VPS
+        run: |
+          ssh -i ~/.ssh/gh-actions-key -o StrictHostKeyChecking=no user@your-vps-ip 'echo hello from VPS'
+
       - name: Debug VPS_KEY
         run: echo "${{ secrets.VPS_KEY }}" | head -n 50
 
