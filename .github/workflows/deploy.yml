@@ -1,4 +1,4 @@
-name: Deploy na VPS
+name: Deploy on VPS
 
 on:
   push:
@@ -13,16 +13,21 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Instalacja zależności (np. Node.js)
+      - name: Install
         run: |
           sudo apt update
           sudo apt install -y nodejs npm
 
-      - name: Build (jeśli masz build)
+      - name: Pull
+        run: |
+          cd /home/ubuntu/projects/Portfolio
+          git pull origin main
+
+      - name: Build
         run: |
           npm install
           npm run build
 
-      - name: Restart aplikacji
+      - name: Restart
         run: |
-          pm2 restart my-app || echo "Nie znaleziono aplikacji"
+          pm2 restart portfolio || echo "Nie znaleziono aplikacji"
