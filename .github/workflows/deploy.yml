@@ -23,6 +23,14 @@ jobs:
       - name: Debug key
         run: ssh-keygen -lf ~/.ssh/gh-actions-key || echo "Invalid key"
 
+      - name: SSH Test
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VPS_KEY }}" > ~/.ssh/gh-actions-key
+          chmod 600 ~/.ssh/gh-actions-key
+          ssh -vvv -i ~/.ssh/gh-actions-key -o StrictHostKeyChecking=no ubuntu@${{ secrets.VPS_HOST }} 'echo OK'
+
+
       - name: Test SCP
         run: |
           echo "Hello" > test.txt
