@@ -4,7 +4,7 @@ import {EnumTech} from "@/const/EnumTech";
 export const projects: Project[] = [
     {
         name: "LYMAD website",
-        date: "05/2025",
+        date: "05/2025 - now",
         description:
             <div className="leading-relaxed font-sans text-[1.1rem]">
                 <div className="indent-8">
@@ -27,7 +27,7 @@ export const projects: Project[] = [
                 </ul>
             </div>,
         images: ["Lymad-website-4.png", "Lymad-website-5.png", "Lymad-website-6.png", "Lymad-website-1.png", "Lymad-website-2.png", "Lymad-website-3.png"],
-        tech: [EnumTech.React, EnumTech.TailwindCSS, EnumTech.TypeScript, EnumTech.NextJS, EnumTech.Zustand, EnumTech.Python, EnumTech.Flask, EnumTech.PostgreSQL, EnumTech.Git]
+        tech: [EnumTech.React, EnumTech.TailwindCSS, EnumTech.TypeScript, EnumTech.NextJS, EnumTech.Zustand, EnumTech.Python, EnumTech.Flask, EnumTech.PostgreSQL, EnumTech.Git, EnumTech.Nginx]
     },
     {
         name: "praAppDetector",

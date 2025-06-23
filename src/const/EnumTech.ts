@@ -31,4 +31,5 @@ export enum EnumTech {
     Blender = "Blender",
     Android = "Android",
     MacOS = "MacOS",
+    Nginx = "Nginx",
 }
