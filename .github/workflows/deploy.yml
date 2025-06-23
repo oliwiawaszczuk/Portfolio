@@ -1,35 +1,28 @@
-name: Test SSH
+name: Deploy na VPS
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
-  test-ssh:
-    runs-on: ubuntu-latest
+  deploy:
+    runs-on: [self-hosted]
 
     steps:
-      - name: Setup SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.VPS_KEY }}" > ~/.ssh/gh-actions-key
-          chmod 600 ~/.ssh/gh-actions-key
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-      - name: SSH to VPS
+      - name: Instalacja zależności (np. Node.js)
         run: |
-          ssh -i ~/.ssh/gh-actions-key -o StrictHostKeyChecking=no ubuntu@57.128.223.196 'echo hello from VPS'
+          sudo apt update
+          sudo apt install -y nodejs npm
 
-      - name: Debug VPS_KEY
-        run: echo "${{ secrets.VPS_KEY }}" | head -n 50
-
-      - name: Write private key
+      - name: Build (jeśli masz build)
         run: |
-          mkdir -p ~/.ssh
-          printf "%s" "${{ secrets.VPS_KEY }}" > ~/.ssh/gh-actions-key
-          chmod 600 ~/.ssh/gh-actions-key
-          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+          npm install
+          npm run build
 
-      - name: Try SSH
+      - name: Restart aplikacji
         run: |
-          ssh -vvv -i ~/.ssh/gh-actions-key -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} 'echo OK'
+          pm2 restart my-app || echo "Nie znaleziono aplikacji"
