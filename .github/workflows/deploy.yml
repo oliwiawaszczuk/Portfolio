@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Debug VPS_KEY
-        run: echo "${{ secrets.VPS_KEY }}" | head -n 5
+        run: echo "${{ secrets.VPS_KEY }}" | head -n 50
 
       - name: Write private key
         run: |
