@@ -37,7 +37,7 @@ jobs:
       - name: Test SCP
         run: |
           echo "Hello" > test.txt
-          scp -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no test.txt root@your-vps-ip:/tmp
+          scp -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no test.txt ubuntu@57.128.223.196:/tmp
 
 
       - name: SSH test
@@ -45,5 +45,5 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.VPS_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          ssh -vvv -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no root@your-vps-ip 'echo OK'
+          ssh -vvv -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no ubuntu@57.128.223.196 'echo OK'
 
