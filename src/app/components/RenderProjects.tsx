@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import ProjectFrame from "@/app/components/ProjectFrame";
-import FullscreenImageViewer from "@/app/components/FullscreenImageViewer";
-import {Project} from "@/types/Project";
-import {EnumTech} from "@/const/EnumTech";
-import {projects} from "@/const/Projects";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react"
+import ProjectFrame from "@/app/components/ProjectFrame"
+import FullscreenImageViewer from "@/app/components/FullscreenImageViewer"
+import {Project} from "@/types/Project"
+import {EnumTech} from "@/const/EnumTech"
+import {projects} from "@/const/Projects"
+import { motion } from "framer-motion"
 
-type SelectedTech = {
+export type SelectedTech = {
     tech: EnumTech
     selected: boolean
 }
@@ -20,7 +20,7 @@ const RenderProjects = () => {
     const [selectedTech, setSelectedTech] = useState<SelectedTech[]>([])
     const [selectedProject, setSelectedProject] = useState<SelectedProject[]>([])
     const [selectedProjectCount, setSelectedProjectCount] = useState<number>(0)
-    const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
+    const [fullscreenImage, setFullscreenImage] = useState<string | null>(null)
 
     function setEveryTech(state: boolean) {
         const initializedTech: SelectedTech[] = Object.values(EnumTech).map((tech) => ({
@@ -49,16 +49,23 @@ const RenderProjects = () => {
     }
     
     const handleImageClick = (imgSrc: string) => {
-        setFullscreenImage(imgSrc);
-        // Disable body scroll when fullscreen is active
-        document.body.style.overflow = "hidden";
-    };
+        console.log(imgSrc)
+        setFullscreenImage(imgSrc)
+        document.body.style.overflow = "hidden"
+    }
     
     const closeFullscreen = () => {
-        setFullscreenImage(null);
-        // Re-enable body scroll
-        document.body.style.overflow = "auto";
-    };
+        setFullscreenImage(null)
+        document.body.style.overflow = "auto"
+    }
+    
+    const handleTechClick = (tech: EnumTech) => {
+        setSelectedTech((prev) =>
+            prev.map((item) =>
+                item.tech === tech ? { ...item, selected: !item.selected } : item
+            )
+        )
+    }
 
     useEffect(() => {
         const initializedProjects = projects.map((project) => ({
@@ -74,7 +81,7 @@ const RenderProjects = () => {
 
     useEffect(() => {
         filterProjects()
-    }, [selectedTech]);
+    }, [selectedTech])
 
     return (
         <section className="py-16 relative">
@@ -126,13 +133,7 @@ const RenderProjects = () => {
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ duration: 0.3, delay: idx * 0.03 }}
-                                onClick={() =>
-                                    setSelectedTech((prev) =>
-                                        prev.map((item) =>
-                                            item.tech === tech ? { ...item, selected: !item.selected } : item
-                                        )
-                                    )
-                                }
+                                onClick={() => handleTechClick(tech)}
                                 className={`group py-2 px-4 border rounded-lg flex items-center justify-center gap-3 cursor-pointer transition-all ${
                                     selected 
                                         ? "border-[#ffc951]/40 bg-[#ffc951]/10 text-white" 
@@ -189,6 +190,8 @@ const RenderProjects = () => {
                                 tech={project.tech}
                                 isDescriptionOnRight={!(idx % 2)}
                                 onImageClick={handleImageClick}
+                                selectedTech={selectedTech}
+                                onTechClick={handleTechClick}
                             />
                         ))}
                 </div>

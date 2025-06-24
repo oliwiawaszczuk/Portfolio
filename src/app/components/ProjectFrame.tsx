@@ -4,13 +4,34 @@ import ImageSlider from "@/app/components/ImageSlider";
 import "@fontsource/fredoka";
 import { Project } from "@/types/Project";
 import { motion } from "framer-motion";
+import { SelectedTech } from "@/app/components/RenderProjects";
+import { EnumTech } from "@/const/EnumTech";
 
 type ProjectFrameProps = Project & {
     isDescriptionOnRight: boolean,
-    onImageClick: (imgSrc: string) => void
+    onImageClick: (imgSrc: string) => void,
+    selectedTech: SelectedTech[],
+    onTechClick: (tech: EnumTech) => void
 }
 
-const ProjectFrame = ({isDescriptionOnRight, name, description, images, date, tech, onImageClick}: ProjectFrameProps) => {
+const ProjectFrame = ({
+    isDescriptionOnRight, 
+    name, 
+    description, 
+    images, 
+    date, 
+    tech, 
+    onImageClick,
+    selectedTech,
+    onTechClick
+}: ProjectFrameProps) => {
+    
+    // Function to check if a tech is selected
+    const isTechSelected = (techItem: EnumTech): boolean => {
+        const found = selectedTech.find(item => item.tech === techItem);
+        return found ? found.selected : false;
+    };
+    
     return (
         <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -20,8 +41,6 @@ const ProjectFrame = ({isDescriptionOnRight, name, description, images, date, te
             className="mb-16 rounded-xl overflow-hidden shadow-lg hover:shadow-xl border border-[#ffc951]/20 hover:border-[#ffc951]/40 bg-[#1e1e1e]/80 backdrop-blur-sm transition-all duration-300"
         >
             <div className="flex flex-col lg:flex-row">
-                {/* IMAGES SECTION - Fixed height on all devices - shown first on mobile, 
-                    and on the left or right depending on isDescriptionOnRight prop */}
                 {isDescriptionOnRight && (
                     <div className="lg:w-1/2 h-[300px] sm:h-[350px] md:h-[400px] lg:h-[500px] relative bg-[#151515]">
                         {images.length > 0 ? (
@@ -66,14 +85,19 @@ const ProjectFrame = ({isDescriptionOnRight, name, description, images, date, te
                         {tech.map((item, i) => (
                             <div 
                                 key={i} 
-                                className="inline-flex items-center gap-2 px-3 py-2 bg-[#121212]/70 rounded-lg border border-[#ffc951]/10 hover:border-[#ffc951]/30 hover:bg-[#121212]/90 transition-all duration-200"
+                                className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg border cursor-pointer transition-all duration-200 ${
+                                    isTechSelected(item)
+                                        ? "border-[#ffc951]/40 bg-[#ffc951]/10 text-white" 
+                                        : "border-gray-800/50 bg-[#121212]/70 text-[#a0a0a0] hover:bg-[#121212]/90"
+                                }`}
+                                onClick={() => onTechClick(item)}
                             >
                                 <img 
                                     src={`./icons/${item === "C#" ? "CSharp" : item}.png`} 
-                                    className="w-5 h-5 object-contain" 
+                                    className={`w-5 h-5 object-contain ${isTechSelected(item) ? "opacity-100" : "opacity-70"}`} 
                                     alt={item}
                                 /> 
-                                <span className="text-sm text-[#e0e0e0]">{item}</span>
+                                <span className="text-sm">{item}</span>
                             </div>
                         ))}
                     </div>

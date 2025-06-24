@@ -68,7 +68,7 @@ const ImageSlider = ({ images, onImageClick }: ImageSliderProps) => {
                         onTouchEnd={handleTouchEnd}
                     >
                         {/* Click overlay with magnifying glass - hidden on mobile */}
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 hidden md:flex">
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 md:flex">
                             <div className="bg-[#ffc951]/20 backdrop-blur-sm p-3 rounded-full">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m4-3H6" />
