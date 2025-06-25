@@ -22,12 +22,12 @@ export default function Home() {
                 <Header />
             </section>
             
-            <section id="skills" className="relative z-10">
-                <KnowledgeGraph/>
-            </section>
-            
             <section id="projects" className="relative z-10">
                 <RenderProjects/>
+            </section>
+
+            <section id="skills" className="relative z-10">
+                <KnowledgeGraph/>
             </section>
             
             <footer className="py-12 bg-black/30">
