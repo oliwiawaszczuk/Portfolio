@@ -29,6 +29,6 @@ jobs:
         run: |
           cd /home/ubuntu/projects/Portfolio
           pm2 delete portfolio || true
-          pm2 start npm --name portfolio -- run start
+          PORT=3004 pm2 start npm --name portfolio -- run start
 #          pm2 restart portfolio || pm2 start npm --name portfolio -- run start
 
