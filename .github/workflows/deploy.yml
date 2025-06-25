@@ -19,11 +19,6 @@ jobs:
           sudo apt update
           sudo apt install -y nodejs npm
 
-      - name: Pull latest changes
-        run: |
-          cd /home/ubuntu/projects/Portfolio
-          git pull origin main
-
       - name: Build
         run: |
           cd /home/ubuntu/projects/Portfolio
