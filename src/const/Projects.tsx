@@ -3,6 +3,18 @@ import {EnumTech} from "@/const/EnumTech";
 
 export const projects: Project[] = [
     {
+        name: "Wirtualna Księga gości",
+        date: "06/2025 - now",
+        description:
+            <div className="leading-relaxed font-sans text-[1.1rem]">
+                <div className="indent-8">
+                    <b className="text-[#ffc200]">Work in progress...</b>
+                </div>
+            </div>,
+        images: [],
+        tech: [EnumTech.React, EnumTech.TypeScript, EnumTech.NextJS, EnumTech.Python, EnumTech.Flask, EnumTech.PostgreSQL, EnumTech.Git, EnumTech.Nginx]
+    },
+    {
         name: "LYMAD website",
         date: "05/2025 - now",
         description:
