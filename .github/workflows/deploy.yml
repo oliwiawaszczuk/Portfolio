@@ -1,38 +1,44 @@
-name: Deploy on VPS
+name: Deploy portfolio website
 
 on:
   push:
-    branches: [main]
-  workflow_dispatch:
+    branches:
+      - main
 
 jobs:
-  deploy:
-    runs-on: [self-hosted]
+  web-deploy:
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    name: Deploy
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - name: Get latest code
+        uses: actions/checkout@v3
         with:
-          ref: main
+          fetch-depth: 0
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
 
       - name: Install dependencies
-        run: |
-          sudo apt update
-          sudo apt install -y nodejs npm
-
-      - name: Sync files
-        run: |
-          rsync -a --delete /home/ubuntu/deploy/actions-runner/_work/Portfolio/Portfolio/ /home/ubuntu/projects/Portfolio/
+        run: npm install
 
       - name: Build
-        run: |
-          cd /home/ubuntu/projects/Portfolio
-          npm install
-          npm run build
+        run: npm run build
 
-      - name: Restart app
-        run: |
-          cd /home/ubuntu/projects/Portfolio
-          pm2 delete portfolio || true
-          PORT=3004 pm2 start npm --name portfolio -- run start
-#          pm2 restart portfolio || pm2 start npm --name portfolio -- run start
+      - name: List output files
+        run: find out/ -print
 
+      - name: Deploy via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.5
+        with:
+          server: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          local_path: out/
+          remote_path: /home/ubuntu/deploy/www/portfolio
