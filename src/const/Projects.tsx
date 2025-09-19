@@ -3,20 +3,54 @@ import {EnumTech} from "@/const/EnumTech";
 
 export const projects: Project[] = [
     {
-        name: "Wirtualna Księga gości",
-        date: "06/2025 - now",
+        name: "praSym",
+        date: "09/2025 - now",
         description:
             <div className="leading-relaxed font-sans text-[1.1rem]">
                 <div className="indent-8">
-                    <b className="text-[#ffc200]">Work in progress...</b>
+                    <b className="text-[#ffc200]">A 3D planetary simulation</b> built with <b>LWJGL and OpenGL</b>, visualizing celestial mechanics such as orbital motion, and hierarchical systems (sun, earth with moon).
+                    The project focuses on combining <i>real-time rendering</i> with <i>basic physics</i>.
                 </div>
+                <br/>
+                <ul className="list-disc pl-5 space-y-1">
+                    <li>
+                        <b className="text-[#ffc200]">3D Rendering:</b> Uses custom <i>SphereMesh</i>, <i>CuboidMesh</i>, and <i>LineMesh</i> classes to represent planets, stars, and orbital paths in real-time with shading and coloring.
+                    </li>
+                </ul>
             </div>,
-        images: [],
-        tech: [EnumTech.React, EnumTech.TypeScript, EnumTech.NextJS, EnumTech.Python, EnumTech.Flask, EnumTech.PostgreSQL, EnumTech.Git, EnumTech.Nginx]
+        images: ["praSym1.mov"],
+        tech: [EnumTech.Java]
+    },{
+        name: "praTui",
+        date: "07/2025 - now",
+        description:
+            <div className="leading-relaxed font-sans text-[1.1rem]">
+                <div className="indent-8">
+                    <b className="text-[#ffc200]">A personal inventory dashboard</b> built in <b>Python</b>, designed as a lightweight and easily customizable tool for managing items, projects, and usage history.
+                    The app runs directly from a <i>macOS menu bar icon</i>, giving quick access to data without opening a browser or terminal.
+                </div>
+                <br/>
+                <ul className="list-disc pl-5 space-y-1">
+                    <li>
+                        <b className="text-[#ffc200]">Inventory Management:</b> Add, remove, and update items stored in a structured local database, making it easy to track personal belongings.
+                    </li>
+                    <li>
+                        <b className="text-[#ffc200]">Custom Queries:</b> Built-in console for executing <i>SQL-like queries</i> to filter, sort, or analyze data on demand.
+                    </li>
+                    <li>
+                        <b className="text-[#ffc200]">Project Tracking:</b> Create projects and link items to them, maintaining a record of what was used where.
+                    </li>
+                    <li>
+                        <b className="text-[#ffc200]">Quick Access:</b> Launched via a <i>macOS menu bar script</i>, ensuring that the dashboard is always one click away.
+                    </li>
+                </ul>
+            </div>,
+        images: ["praTui1.png"],
+        tech: [EnumTech.Python, EnumTech.SQLite, EnumTech.SQL, EnumTech.MacOS]
     },
     {
         name: "LYMAD website",
-        date: "05/2025 - now",
+        date: "05/2025 - 09/2025",
         description:
             <div className="leading-relaxed font-sans text-[1.1rem]">
                 <div className="indent-8">
@@ -40,23 +74,6 @@ export const projects: Project[] = [
             </div>,
         images: ["Lymad-website-4.png", "Lymad-website-5.png", "Lymad-website-6.png", "Lymad-website-1.png", "Lymad-website-2.png", "Lymad-website-3.png"],
         tech: [EnumTech.React, EnumTech.TailwindCSS, EnumTech.TypeScript, EnumTech.NextJS, EnumTech.Zustand, EnumTech.Python, EnumTech.Flask, EnumTech.PostgreSQL, EnumTech.Git, EnumTech.Nginx]
-    },
-    {
-        name: "praAppDetector",
-        date: "04/2025",
-        description:
-            <div className="leading-relaxed font-sans text-[1.1rem]">
-                <div className="indent-8"> <b className="text-[#ffc200]">A macOS background utility</b></div>
-                <br/>
-                <div>Work in progress...</div>
-                {/*<ul className="list-disc pl-5 space-y-1">*/}
-                {/*    <li><b className="text-[#ffc200]">Real-Time Monitoring:</b> Captures battery level and charging status <i>every minute</i> via <i>IOKit Power Sources API</i>, ensuring data accuracy</li>*/}
-                {/*    <li><b className="text-[#ffc200]">Data Persistence:</b> Automatically stores logs in a <i>local SQLite database</i>, with advanced trend analysis powered by <i>Python data science tools</i> (Numpy/Matplotlib)</li>*/}
-                {/*    <li><b className="text-[#ffc200]">Background Execution:</b> Runs as a <i>launchd service</i> (via <code>~/Library/LaunchAgents/</code> .plist), ensuring persistent monitoring with minimal system impact</li>*/}
-                {/*</ul>*/}
-            </div>,
-        images: [],
-        tech: [EnumTech.Swift, EnumTech.Git, EnumTech.MacOS] //, EnumTech.Python, EnumTech.SQLite, EnumTech.SQL,
     },
     {
         name: "praLog",

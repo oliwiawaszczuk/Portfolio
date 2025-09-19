@@ -32,4 +32,6 @@ export enum EnumTech {
     Android = "Android",
     MacOS = "MacOS",
     Nginx = "Nginx",
+    Java = "Java",
+    // KiCad = "KiCad",
 }

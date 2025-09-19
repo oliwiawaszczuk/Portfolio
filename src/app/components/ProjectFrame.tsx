@@ -46,7 +46,7 @@ const ProjectFrame = ({
                         {images.length > 0 ? (
                             <div className="w-full h-full">
                                 <ImageSlider 
-                                    images={images} 
+                                    images={images}
                                     onImageClick={onImageClick}
                                 />
                             </div>
