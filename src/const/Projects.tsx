@@ -54,7 +54,7 @@ export const projects: Project[] = [
         description:
             <div className="leading-relaxed font-sans text-[1.1rem]">
                 <div className="indent-8">
-                    <b className="text-[#ffc200]">See full website: https://lymad.com A full-stack web application</b> built with a modern <b>React frontend</b> and a secure <b>Python backend</b>, featuring robust authentication mechanisms including persistent login sessions. Designed with both user experience and data protection in mind, the project serves as a foundational template for scalable web systems.
+                    <b className="text-[#ffc200]">A full-stack web application</b> built with a modern <b>React frontend</b> and a secure <b>Python backend</b>, featuring robust authentication mechanisms including persistent login sessions. Designed with both user experience and data protection in mind, the project serves as a foundational template for scalable web systems.
                 </div>
                 <br/>
                 <ul className="list-disc pl-5 space-y-1">
