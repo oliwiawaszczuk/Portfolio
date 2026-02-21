@@ -4,7 +4,7 @@ import {EnumTech} from "@/const/EnumTech";
 export const projects: Project[] = [
     {
         name: "praSym",
-        date: "09/2025 - now",
+        date: "09/2025",
         description:
             <div className="leading-relaxed font-sans text-[1.1rem]">
                 <div className="indent-8">
@@ -22,7 +22,7 @@ export const projects: Project[] = [
         tech: [EnumTech.Java]
     },{
         name: "praTui",
-        date: "07/2025 - now",
+        date: "07/2025",
         description:
             <div className="leading-relaxed font-sans text-[1.1rem]">
                 <div className="indent-8">
@@ -50,7 +50,7 @@ export const projects: Project[] = [
     },
     {
         name: "LYMAD website",
-        date: "05/2025 - 09/2025",
+        date: "05/2025 - 08/2025",
         description:
             <div className="leading-relaxed font-sans text-[1.1rem]">
                 <div className="indent-8">

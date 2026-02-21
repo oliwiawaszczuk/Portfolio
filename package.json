@@ -33,6 +33,6 @@
     "@types/three": "^0.174.0",
     "gh-pages": "^6.3.0",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "5.9.3"
   }
 }
