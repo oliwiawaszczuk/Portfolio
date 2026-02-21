@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import Link from "next/link"
 import ProjectFrame from "@/app/components/ProjectFrame"
 import FullscreenImageViewer from "@/app/components/FullscreenImageViewer"
 import {Project} from "@/types/Project"
@@ -92,9 +93,27 @@ const RenderProjects = () => {
                 viewport={{ once: true }}
                 className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12"
             >
-                <h2 className="text-3xl font-light text-white mb-2 tracking-tight">Projects<span className="font-semibold"> Portfolio</span></h2>
-                <div className="h-[2px] w-24 bg-[#ffc951] mb-6"></div>
-                <p className="text-[#a0a0a0] max-w-2xl">Filter projects by technology to see what I've been working on.</p>
+                <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-6">
+                    <div>
+                        <h2 className="text-3xl font-light text-white mb-2 tracking-tight">Projects<span className="font-semibold"> Portfolio</span></h2>
+                        <div className="h-[2px] w-24 bg-[#ffc951] mb-2"></div>
+                        <p className="text-[#a0a0a0] max-w-2xl">Filter projects by technology to see what I've been working on.</p>
+                    </div>
+                    <Link
+                        href="/projects/iot"
+                        className="group flex items-center gap-3 px-5 py-3 rounded-xl bg-[#1e1e1e]/80 backdrop-blur-sm border border-[#ffc951]/25 hover:border-[#ffc951]/50 hover:bg-[#ffc951]/5 transition-all duration-300 self-start shrink-0"
+                    >
+                        <div className="p-2 rounded-lg bg-[#ffc951]/10 group-hover:bg-[#ffc951]/20 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#ffc951]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <span className="text-[#ffc951] font-medium text-sm">Projekty IoT</span>
+                        <svg className="w-4 h-4 text-[#ffc951] group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </Link>
+                </div>
             </motion.div>
 
             <motion.div 
